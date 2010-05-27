@@ -25,7 +25,7 @@ gem_package "mechanize"
 
 # Run the setup_openfire.rb script
 execute "setup_openfire.rb" do
-  command "ruby /vagrant/setup_openfire.rb #{@node[:openfire][:admin][:password]}"
+  command "ruby /vagrant/setup_openfire.rb"
   user "root"
   action :run
 end

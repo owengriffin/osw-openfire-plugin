@@ -5,10 +5,8 @@ require 'socket'
 
 openfire = {
   :domain => Socket.gethostname,
-  :password => ARGV[1]
+  :password => "admin"
 }
-
-puts openfire.inspect
 
 # Returns the form element, based on the given id
 def get_form_by_action(page, action)
