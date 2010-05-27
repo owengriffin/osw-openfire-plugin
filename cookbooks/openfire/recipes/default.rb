@@ -13,12 +13,25 @@ execute "install-openfire" do
   action :run
 end
 
+service "openfire" do
+  supports :restart => true, :start => true
+  action [ :start ]
+end
+
 # Ensure that mechanize is installed
+package "libxslt1-dev"
+package "libxml2-dev"
 gem_package "mechanize"
 
 # Run the setup_openfire.rb script
 execute "setup_openfire.rb" do
-  command "/vagrant/setup_openfire.rb"
+  command "ruby /vagrant/setup_openfire.rb #{@node[:openfire][:admin][:password]}"
+  user "root"
   action :run
 end
 
+# Restart the openfire server
+service "openfire" do
+  supports :restart => true, :start => true
+  action [ :restart ]
+end
