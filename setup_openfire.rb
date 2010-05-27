@@ -1,15 +1,11 @@
 #!/usr/bin/env ruby
 require 'rubygems'
 require 'mechanize'
-
-if ARGV.length != 3
-  puts "You need to supply a domain and an administrator password"
-  exit
-end
+require 'socket'
 
 openfire = {
-  :domain => ARGV[1],
-  :password => ARGV[2]
+  :domain => Socket.gethostname,
+  :password => ARGV[1]
 }
 
 puts openfire.inspect
